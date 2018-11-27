@@ -25,4 +25,14 @@ public class EmployeeService {
         this.employees.add(employee);
         return idIndex;
     }
+
+    public Employee findById(int id){
+        for(Employee employee : this.employees){
+            if(employee.getId() == (id)){
+                return employee;
+            }
+        }
+        return null;
+    }
+
 }

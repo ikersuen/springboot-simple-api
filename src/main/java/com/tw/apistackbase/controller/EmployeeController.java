@@ -31,9 +31,16 @@ public class EmployeeController {
         return id;
     }
 
-    @RequestMapping(value = "/:id", method = RequestMethod.PUT)
-    public @ResponseBody String updateEmployee(@RequestBody Employee employee){
-        employeeService.getAll().filter()
-        return "ok";
+    @PutMapping("/{id}")
+    public @ResponseBody String updateEmployee(@PathVariable int id, @RequestBody Employee employeeUpdate){
+        if(employeeService.findById(id) != null){
+            Employee update = employeeService.findById(id);
+            update.setAge(employeeUpdate.getAge());
+            update.setGender(employeeUpdate.getGender());
+            update.setName(employeeUpdate.getName());
+            return "update success";
+        }else{
+            return "update failed";
+        }
     }
 }
